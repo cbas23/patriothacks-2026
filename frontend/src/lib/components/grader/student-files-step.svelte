@@ -17,6 +17,6 @@
 
 	<div class="space-y-2">
 		<Label for="student-files">Student Essays</Label>
-		<FilePit bind:value={studentFiles} accept=".pdf,.docx,.doc,.txt" multiple />
+		<FilePit bind:value={studentFiles} accept=".pdf,.txt" multiple />
 	</div>
 </div>

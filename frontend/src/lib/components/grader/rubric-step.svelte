@@ -18,7 +18,7 @@
 
 	<div class="space-y-2">
 		<Label for="rubric-file">Rubric File</Label>
-		<FilePit bind:value={rubricFile} accept=".pdf,.docx,.doc,.txt" multiple={false} />
+		<FilePit bind:value={rubricFile} accept=".pdf,.txt" multiple={false} />
 	</div>
 
 	<div class="space-y-2">

@@ -11,7 +11,7 @@
 
 	let {
 		class: className,
-		accept = 'application/pdf,image/*,.doc,.docx,.txt',
+		accept = 'application/pdf,image/*,.doc,.txt',
 		multiple = true,
 		value = $bindable(null),
 		onchange
@@ -122,7 +122,7 @@
 					Click to upload or drag and drop
 				{/if}
 			</p>
-			<p class="text-xs text-muted-foreground/70">PDF, Images, or Documents (DOC, DOCX, TXT)</p>
+			<p class="text-xs text-muted-foreground/70">PDF, Images, or Documents (DOC, Images, TXT)</p>
 		</div>
 	{:else}
 		<div class="flex flex-col gap-2">
