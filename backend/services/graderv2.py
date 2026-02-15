@@ -121,7 +121,7 @@ def grade_work(
                 system_instruction=system_instruction,
                 response_mime_type="application/json",
                 response_schema=response_schema,
-                temperature=0.3,
+                temperature=0.1,
                 max_output_tokens=4000,
             ),
         )
