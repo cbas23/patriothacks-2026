@@ -86,6 +86,8 @@ def grade_work(
             f"Instructor notes: {notes}\n\n"
             "Grade the student assignment based on the attached rubric.\n"
             "Provide detailed feedback for each criterion.\n"
+            "Calculate the score for each criterion and an overall score if applicable.\n"
+            "When possible, make sure the name field is filled with the student's name\n"
             "Respond with valid JSON only."
         )
 
@@ -95,8 +97,9 @@ def grade_work(
                 "=== RUBRIC ===",
                 rubric_file,
                 "\n=== STUDENT ASSIGNMENT ===",
+                f"\n file: {assignment_filename}\n",
                 assignment_file,
-                "\nGrade this assignment according to the rubric.",
+                "\nGrade this assignment according to the rubric. Following the instructor notes",
             ],
             config=types.GenerateContentConfig(
                 system_instruction=system_instruction,

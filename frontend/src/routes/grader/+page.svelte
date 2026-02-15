@@ -15,10 +15,12 @@
 	let rubricFile = $state<FileList | null>(null);
 	let feedbackType = $state('');
 	let studentFiles = $state<FileList | null>(null);
-	let isGrading = $state(true); // TODO: change to false
+	let isGrading = $state(false);
 	let isFinished = $state(false);
 	let gradingResults = $state<GradingResult[]>([]);
 	let gradingError = $state<string | null>(null);
+	let preFetchedResults = $state<GradingResult[]>([]);
+	let preFetchError = $state<string | null>(null);
 
 	const steps = [
 		{ title: 'Rubric', description: 'Upload rubric & feedback type' },
@@ -27,14 +29,29 @@
 	];
 
 	function nextStep() {
+		if (currentStep === 1 && preFetchedResults.length > 0) {
+			gradingResults = preFetchedResults;
+		}
 		if (currentStep < 2) currentStep++;
 	}
 
 	function prevStep() {
+		if (currentStep === 2) {
+			preFetchedResults = [];
+			preFetchError = null;
+			gradingResults = [];
+			gradingError = null;
+		}
 		if (currentStep > 0) currentStep--;
 	}
 
 	async function handleSubmit() {
+		if (preFetchedResults.length > 0) {
+			gradingResults = preFetchedResults;
+			isFinished = true;
+			return;
+		}
+
 		if (!rubricFile || !studentFiles) return;
 
 		isGrading = true;
@@ -91,6 +108,49 @@
 			isFinished = true;
 		}
 	}
+
+	async function prefetchGrading() {
+		if (!rubricFile || !studentFiles || preFetchedResults.length > 0 || preFetchError) return;
+
+		preFetchError = null;
+
+		try {
+			const rubricData = rubricFile[0];
+			const studentFileList = Array.from(studentFiles);
+
+			console.log('[Grader] Prefetching grading', {
+				rubric: rubricData.name,
+				studentFiles: studentFileList.map((f) => f.name)
+			});
+
+			const gradingPromises = studentFileList.map(async (studentFile) => {
+				const formData = new FormData();
+				formData.append('rubric', rubricData);
+				formData.append('assignment', studentFile);
+				if (feedbackType) {
+					formData.append('notes', feedbackType);
+				}
+
+				const response = await fetch(`${env.PUBLIC_BACKEND_URL}/api/gradev2/`, {
+					method: 'POST',
+					body: formData
+				});
+
+				if (!response.ok) {
+					const errorData = await response.json().catch(() => ({}));
+					throw new Error(errorData.error || `HTTP ${response.status}`);
+				}
+
+				return response.json();
+			});
+
+			const results = await Promise.all(gradingPromises);
+			preFetchedResults = results;
+		} catch (err) {
+			preFetchError = err instanceof Error ? err.message : 'Prefetch failed';
+			console.error('[Grader] Prefetch error:', preFetchError);
+		}
+	}
 </script>
 
 {#if isGrading}
@@ -129,7 +189,10 @@
 						</Button>
 
 						{#if currentStep < 2}
-							<Button onclick={nextStep}>
+							<Button
+								onclick={nextStep}
+								onmouseenter={currentStep === 1 ? prefetchGrading : undefined}
+							>
 								Next
 								<ChevronRight class="ml-2 size-4" />
 							</Button>

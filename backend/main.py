@@ -12,6 +12,7 @@ from services.graderv2 import grade_work
 from services.detector import detect_ai_text
 from services.plagiarism import check_plagiarism
 from utils.text_extractor import extract_text
+from services.file_to_image import convert_to_image
 
 load_dotenv()
 
@@ -226,3 +227,24 @@ async def plagiarism_check(assignments: list[UploadFile] = File(...)):
 
     result = check_plagiarism(texts, filenames)
     return result
+
+
+@app.post("/api/convert/to-image")
+async def convert_file_to_image(file: UploadFile = File(...)):
+    ext = os.path.splitext(file.filename or "")[1].lower()
+    allowed = {".pdf", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".docx", ".txt"}
+    if ext not in allowed:
+        return {"error": f"Unsupported file type: {ext}"}
+
+    file_path = None
+    try:
+        file_path = _save_temp(file)
+        result = convert_to_image(file_path)
+        return result
+    except ValueError as e:
+        return {"error": str(e)}
+    except Exception as e:
+        return {"error": "Conversion failed", "detail": str(e)}
+    finally:
+        if file_path and os.path.isfile(file_path):
+            os.unlink(file_path)
