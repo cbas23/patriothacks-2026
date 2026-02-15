@@ -13,7 +13,7 @@
 <div class="space-y-6">
 	<div>
 		<h2 class="mb-1 text-xl font-semibold">Upload Rubric</h2>
-		<p class="text-sm text-muted-foreground">Upload your grading rubric file (PDF, DOCX, or TXT)</p>
+		<p class="text-sm text-muted-foreground">Upload your grading rubric file (PDF, Image, or TXT)</p>
 	</div>
 
 	<div class="space-y-2">
