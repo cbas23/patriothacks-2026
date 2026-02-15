@@ -8,8 +8,8 @@
 </script>
 
 <nav class="border-b border-border bg-background">
-	<div class="container mx-auto flex h-16 items-center gap-6 px-4">
-		<span class="text-lg font-semibold">Ez Grader</span>
+	<div class="container mx-auto flex h-16 items-center justify-between gap-6 px-4">
+		<span class="text-lg font-semibold">Swift Grader</span>
 		<div class="flex gap-6">
 			<a
 				href={resolve('/')}

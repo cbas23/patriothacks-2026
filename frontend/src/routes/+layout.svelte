@@ -5,11 +5,7 @@
 	let { children } = $props();
 </script>
 
-<ModeWatcher defaultMode="light" />
-
-<svelte:head>
-	<script src="https://tweakcn.com/live-preview.min.js"></script>
-</svelte:head>
+<ModeWatcher defaultMode="dark" />
 
 <Navbar />
 
