@@ -68,11 +68,19 @@
 			{#if results[selectedIndex]}
 				{@const student = results[selectedIndex]}
 				<div class="flex flex-col gap-4">
-					<img
-						src="https://picsum.photos/seed/{student.name}/800/600"
-						alt="Submission for {student.name}"
-						class="w-full rounded-lg object-cover"
-					/>
+					{#if student.images && student.images.length > 0}
+						{#each student.images as image, i (i)}
+							<img
+								src="data:image/png;base64,{image}"
+								alt="Submission page {i + 1} for {student.name}"
+								class="w-full rounded-lg object-contain"
+							/>
+						{/each}
+					{:else}
+						<div class="flex h-48 w-full items-center justify-center rounded-lg bg-muted">
+							<span class="text-muted-foreground">No preview available</span>
+						</div>
+					{/if}
 				</div>
 			{/if}
 		</div>

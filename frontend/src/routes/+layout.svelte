@@ -2,10 +2,7 @@
 	import './layout.css';
 	import { ModeWatcher } from 'mode-watcher';
 	import Navbar from '$lib/components/navbar.svelte';
-	import { page } from '$app/stores';
 	let { children } = $props();
-
-	const isGradingPage = $derived($page.url.pathname.startsWith('/grader'));
 </script>
 
 <ModeWatcher defaultMode="light" />
@@ -16,10 +13,12 @@
 
 <Navbar />
 
-{#if isGradingPage}
-	<div class="h-[calc(100vh-4rem)]">
-		{@render children()}
-	</div>
-{:else}
+<div class="h-[calc(100vh-4rem)] overflow-y-scroll">
 	{@render children()}
-{/if}
+</div>
+
+<style>
+	:global(body) {
+		overflow: hidden;
+	}
+</style>

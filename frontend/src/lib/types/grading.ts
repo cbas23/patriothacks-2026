@@ -13,6 +13,7 @@ export const GradingResultSchema = z.object({
 	name: z.string(),
 	overall_feedback: z.string(),
 	criteria_feedback: z.array(CriteriaFeedbackSchema),
+	images: z.array(z.string()).optional(),
 	ai_detection: z
 		.object({
 			is_ai_generated: z.boolean(),
