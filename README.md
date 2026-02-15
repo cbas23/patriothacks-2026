@@ -72,7 +72,7 @@ The app will be available at `http://localhost:5173`
 ## Usage
 
 1. Navigate to the grader page
-2. Upload your grading rubric (PDF, DOCX, or TXT)
+2. Upload your grading rubric (PDF, Image or TXT)
 3. Upload student essays (single or multiple)
 4. Add optional instructor notes for context
 5. Click "Grade" and receive instant feedback

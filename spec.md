@@ -52,11 +52,11 @@ Grade a single assignment.
 
 | Parameter           | Type   | Required | Description                                                 |
 | ------------------- | ------ | -------- | ----------------------------------------------------------- |
-| `assignments`       | file[] | Yes      | assignment file to grade (TXT, PDF, PNG, DOCX)              |
-| `rubric`            | file   | Yes      | Rubric file (PDF, DOCX, TXT)                                |
+| `assignments`       | file[] | Yes      | assignment file to grade (TXT, PDF, PNG)              |
+| `rubric`            | file   | Yes      | Rubric file (PDF, Images, TXT)                                |
 | `feedback_approach` | string | No       | A sentence/paragraph describing how feedback should be made |
 
-**Allowed Assignment File Extensions:** `.pdf`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.docx`, `.txt`
+**Allowed Assignment File Extensions:** `.pdf`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.txt`
 
 **Response (Success)**
 
@@ -117,11 +117,11 @@ Grade multiple essays in a single request.
 
 | Parameter           | Type   | Required | Description                                     |
 | ------------------- | ------ | -------- | ----------------------------------------------- |
-| `assignments`       | file[] | Yes      | assignment files to grade (TXT, PDF, PNG, DOCX) |
-| `rubric`            | file   | Yes      | Rubric file (PDF, DOCX, TXT)                    |
+| `assignments`       | file[] | Yes      | assignment files to grade (TXT, PDF, PNG) |
+| `rubric`            | file   | Yes      | Rubric file (PDF, Image, TXT)                    |
 | `feedback_approach` | string | No       | Feedback approach (e.g., "detailed", "brief")   |
 
-**Allowed Assignment File Extensions:** `.pdf`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.docx`, `.txt`
+**Allowed Assignment File Extensions:** `.pdf`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.txt`
 
 **Response**
 

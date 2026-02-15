@@ -273,7 +273,7 @@ result = grade_essay("essay.pdf", rubric=custom_rubric)
 Grade an essay using Google Gemini API.
 
 **Parameters:**
-- `essay_input` (str): Essay text string OR file path (PDF/image/DOCX/TXT)
+- `essay_input` (str): Essay text string OR file path (PDF/image/TXT)
 - `rubric` (dict | str | None): Rubric configuration (uses default if None)
 
 **Returns:**
@@ -339,7 +339,7 @@ See `example_grading_scales.py` for comprehensive examples of all grading scale 
 ## Frontend Integration
 
 To integrate with the frontend, send rubric configurations with grading scale settings. The `/api/grade` endpoint accepts:
-- `essay`: File upload (PDF, image, DOCX, or TXT)
+- `essay`: File upload (PDF, image, or TXT)
 - `rubric`: Optional file upload (JSON or text)
 - `rubric_json`: Optional JSON string with rubric configuration
 

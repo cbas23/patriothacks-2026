@@ -1,6 +1,6 @@
 import os
 
-ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".docx", ".txt"}
+ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".txt"}
 
 GEMINI_NATIVE_FORMATS = {
     ".pdf": "application/pdf",

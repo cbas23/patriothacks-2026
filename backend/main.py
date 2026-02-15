@@ -112,7 +112,6 @@ async def gradev2(
             ".jpeg",
             ".gif",
             ".webp",
-            ".docx",
             ".txt",
         }
 
