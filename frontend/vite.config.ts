@@ -6,6 +6,9 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit(), devtoolsJson()],
+	server: {
+		allowedHosts: ['.loca.lt']
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
