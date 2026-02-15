@@ -10,6 +10,8 @@
 
 	let { results }: Props = $props();
 
+	console.log('===Grading results===', results);
+
 	let selectedIndex = $state(0);
 
 	function getGradePercentage(result: GradingResult): number {
